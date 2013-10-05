@@ -8,6 +8,7 @@ main :: IO ()
 main = do
   http <- simpleHTTP (getRequest "http://www.zalora.sg/") >>= getResponseBody
   let tags = parseTags http
-      linkTags = filter (\x -> x ~== "<a href>") tags
-  putStrLn $ show linkTags
+      brandTags = takeWhile (~/= "</ul>") . dropWhile (~/= "<ul id=BrandsSlider>") $ tags
+      links = ["www.zalora.sg/" ++ fromAttrib "href" tag | tag <- brandTags, tag ~== "<a href>"]
+  putStrLn $ show links
   
