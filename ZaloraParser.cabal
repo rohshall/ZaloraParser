@@ -21,6 +21,6 @@ executable zalora_parser
   -- other-extensions:    
   build-depends:       base >=4.6 && <4.7,
                        HTTP,
-                       tagsoup
+                       regex-tdfa 
   -- hs-source-dirs:      
   default-language:    Haskell2010
