@@ -1,11 +1,11 @@
 import Network.HTTP
-import Text.Regex.TDFA
+import Text.Regex.PCRE
 
 extractZaloraLinks :: String -> [String]
-extractZaloraLinks http =
-  let links = getAllTextMatches $ http  =~ "href=\"/([^\"]*)" :: [String]
+extractZaloraLinks contents =
+  let links = contents =~ "href=\"(/\\w+/\\w+)\"" :: [[String]]
   in
-      ["www.zalora.sg" ++ drop 6 link | link <- links]
+      ["www.zalora.sg" ++ (link !! 1) | link <- links]
 
 main :: IO ()
 main = do
