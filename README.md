@@ -1,4 +1,4 @@
 ZaloraParser
 ============
 
-Web scraper for zalora websites
+Web scraper for zalora websites in Haskell
